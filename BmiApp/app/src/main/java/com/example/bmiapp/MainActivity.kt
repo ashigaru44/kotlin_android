@@ -1,7 +1,6 @@
 package com.example.bmiapp
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import com.example.bmiapp.databinding.ActivityMainBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.lang.NumberFormatException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.pow
 import kotlin.math.round
 
@@ -19,8 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bmiTV: String
     private var units: String = ""
-    var SHARED_PREFS = "sharedPrefs"
-//    private var metric_box: MenuItem = getElement
+    private var items = ArrayList<ItemData>()
+    private var sharedPrefs = "sharedPrefs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 //        print(metric_item)
 //        print(metric_units)
         Log.d("TAGONCREATE", units)
-
+        loadData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -55,16 +59,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        if (units.isEmpty()){
+        if (units.isEmpty()) {
             Log.d("TAGGGG", "GETS TO IF")
             units = "METRIC"
         }
         Log.d("TAGGGG", units)
 
-        if (units == "METRIC"){
+        if (units == "METRIC") {
             menu.findItem(R.id.metric_units).isChecked = true
-        }
-        else if (units == "IMPERIAL"){
+        } else if (units == "IMPERIAL") {
             menu.findItem(R.id.imperial_units).isChecked = true
         }
         return super.onPrepareOptionsMenu(menu)
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.history -> {
-                displayHistory()
+                startActivity(Intent(this, HistoryFragment::class.java))
                 true
             }
             R.id.metric_units -> {
@@ -95,22 +98,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun displayHistory() {
-        startActivity(Intent(this, HistoryFragment::class.java))
-    }
-
     fun saveData() {
-        val sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
-        var editor = sharedPrefs.edit()
-        editor.putFloat("MASS", binding.massET.text.toString().toFloat())
-        editor.putFloat("HEIGHT", binding.heightET.text.toString().toFloat())
-        editor.putFloat("RESULT", binding.bmiTV.text.toString().toFloat())
-        editor.putString("UNITS", units)
+        val sharedPrefs = getSharedPreferences(sharedPrefs, MODE_PRIVATE)
+        val editor = sharedPrefs.edit()
+        val gson = Gson()
+        val json = gson.toJson(items)
+        editor.putString("bmi_results", json)
+        editor.apply()
     }
 
     fun loadData() {
-        val sharedPrefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
+        val sharedPrefs = getSharedPreferences(sharedPrefs, MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPrefs.getString("bmi_results", "")
+        val type = object : TypeToken<ArrayList<ItemData>>() {
+        }.type
 
+        if (json == null || json == "")
+            items = ArrayList()
+        else
+            items = gson.fromJson(json, type)
     }
 
 
@@ -134,15 +141,35 @@ class MainActivity : AppCompatActivity() {
         } catch (e: NumberFormatException) {
             println(e)
         }
-        if (units == "METRIC")
-        {
+        if (units == "METRIC") {
             height /= 100
             bmiTV = (round(mass / height.pow(2) * 100) / 100).toString()
         }
-        if (units == "IMPERIAL"){
+        if (units == "IMPERIAL") {
             bmiTV = (round(mass / height.pow(2) * 70300) / 100).toString()
         }
         binding.bmiTV.text = bmiTV
+        addData(bmiTV.toDouble(), mass, height)
+    }
+
+    fun addData(bmi: Double, mass: Double, height: Double) {
+        val currentTime: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        var massUnits = ""
+        var heightUnits = ""
+        if (units == "METRIC") {
+            massUnits = "kg"
+            heightUnits = "cm"
+        }
+        else if (units == "IMPERIAL"){
+            massUnits = "lb"
+            heightUnits = "ft"
+        }
+        val item: ItemData = ItemData(bmi, currentTime, mass, height, massUnits, heightUnits)
+
+        while (items.size >= 10)
+            items.removeFirst()
+        items.add(item)
+        saveData()
     }
 
 }
