@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BmiApp</string>
+    <string name="mass_empty">Mass is empty!</string>
+    <string name="height_empty">Height is empty!</string>
+
+    <string name="mass_kg">Mass (kg/lb)</string>
+    <string name="height_cm">Height (cm/in)</string>
+    <string name="count_bmi">Count BMI</string>
+    <string name="empty_value">Enter values</string>
+
+    <string name="history">History of measurements</string>
+    <string name="units">Set units</string>
+    <string name="metric_units">Metric</string>
+    <string name="imperial_units">Imperial</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
