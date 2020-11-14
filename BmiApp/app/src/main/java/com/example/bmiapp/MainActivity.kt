@@ -1,5 +1,6 @@
 package com.example.bmiapp
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.history -> {
+                displayHistory()
                 true
             }
             R.id.metric_units -> {
@@ -91,6 +93,10 @@ class MainActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    fun displayHistory() {
+        startActivity(Intent(this, HistoryFragment::class.java))
     }
 
     fun saveData() {
