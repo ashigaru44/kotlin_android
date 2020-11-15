@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HistoryFragment"></activity>
+        <activity android:name=".HistoryFragment"/>
+        <activity android:name=".BmiDescription"
+            android:theme="@style/Theme.BmiApp.CustomTheme"/>
     </application>
 
 </manifest>

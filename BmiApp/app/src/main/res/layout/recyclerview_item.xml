@@ -18,7 +18,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/mass_label"
-            android:text="kg"
+            android:text="@string/kg_label"
             android:textSize="12sp" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_marginStart="239dp"
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/bmi"
-            android:text="190"
+            android:text="@string/height_label"
             android:textSize="12sp" />
 
         <TextView
@@ -40,7 +40,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/height_label"
-            android:text="cm"
+            android:text="@string/cm_label"
             android:textSize="12sp" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="238dp"
             android:layout_toEndOf="@+id/bmi"
-            android:text="Height"
+            android:text="@string/height_word"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -62,7 +62,7 @@
             android:layout_marginStart="135dp"
             android:layout_marginTop="6dp"
             android:layout_toEndOf="@+id/bmi"
-            android:text="100"
+            android:text="@string/mass_label"
             android:textSize="12sp" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"
             android:layout_toEndOf="@+id/bmi"
-            android:text="Date"
+            android:text="@string/date_word"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -84,7 +84,7 @@
             android:layout_marginStart="23dp"
             android:layout_marginTop="3dp"
             android:layout_toEndOf="@+id/bmi"
-            android:text="dd-mm-rrrr" />
+            android:text="@string/date_label" />
 
         <TextView
             android:id="@+id/massTV"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="135dp"
             android:layout_toEndOf="@+id/bmi"
-            android:text="Mass"
+            android:text="@string/mass_word"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -105,7 +105,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="4dp"
             android:layout_marginTop="2dp"
-            android:text="BMI"
+            android:text="@string/bmi_label"
             android:textSize="30sp" />
     </RelativeLayout>
 

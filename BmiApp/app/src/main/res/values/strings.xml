@@ -12,6 +12,21 @@
     <string name="units">Set units</string>
     <string name="metric_units">Metric</string>
     <string name="imperial_units">Imperial</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="proper_bmi_val">Proper value of BMI: 18.5–24.99</string>
+    <string name="high_bmi_val">Too high value of BMI is more than 25</string>
+    <string name="low_bmi_val">Too low value of BMI is less than 18.5</string>
+    <string name="bmiNum">25</string>
+    <string name="BMIresult">Result</string>
+    <string name="kg_label">kg</string>
+    <string name="height_label">190</string>
+    <string name="cm_label">cm</string>
+    <string name="height_word">Height</string>
+    <string name="mass_label">100</string>
+    <string name="date_word">Date</string>
+    <string name="date_label">dd-mm-rrrr</string>
+    <string name="mass_word">Mass</string>
+    <string name="bmi_label">BMI</string>
+    <string name="background_popup">background</string>
+
 </resources>

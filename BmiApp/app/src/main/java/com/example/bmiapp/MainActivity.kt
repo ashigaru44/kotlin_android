@@ -1,6 +1,7 @@
 package com.example.bmiapp
 
 import android.content.Intent
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         bmiTV = savedInstanceState.getString("bmiStr").toString()
         units = savedInstanceState.getString("units").toString()
-        binding.bmiTV.text = bmiTV
+        binding.bmiTV.text = bmiTV.toString()
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
@@ -120,7 +121,6 @@ class MainActivity : AppCompatActivity() {
             items = gson.fromJson(json, type)
     }
 
-
     fun countBMI(view: View) {
         val massET = binding.massET.text.toString()
         val heightET = binding.heightET.text.toString()
@@ -148,8 +148,28 @@ class MainActivity : AppCompatActivity() {
         if (units == "IMPERIAL") {
             bmiTV = (round(mass / height.pow(2) * 70300) / 100).toString()
         }
-        binding.bmiTV.text = bmiTV
-        addData(bmiTV.toDouble(), mass, height)
+        when {
+            bmiTV.toDouble() < 16.0 -> binding.bmiTV.setTextColor(resources.getColor(R.color.dark_blue))
+            bmiTV.toDouble() in 16.0..16.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.pale_blue))
+            bmiTV.toDouble() in 17.0..18.49 -> binding.bmiTV.setTextColor(resources.getColor(R.color.dark_green))
+            bmiTV.toDouble() in 18.5..24.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.green))
+            bmiTV.toDouble() in 25.0..29.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.pale_yellow))
+            bmiTV.toDouble() in 30.0..34.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.yellow))
+            bmiTV.toDouble() in 35.0..39.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.red))
+            bmiTV.toDouble() > 40.0 -> binding.bmiTV.setTextColor(resources.getColor(R.color.dark_red))
+        }
+        if (emptyFlag){
+            binding.bmiTV.text = bmiTV
+            addData(bmiTV.toDouble(), mass, height)
+        }
+        else
+            binding.bmiTV.text = "Fill required fields"
+    }
+
+    fun openBMI(view: View) {
+        val bmiIntent = Intent(this, BmiDescription::class.java)
+        bmiIntent.putExtra("bmi_value", bmiTV)
+        startActivity(bmiIntent)
     }
 
     fun addData(bmi: Double, mass: Double, height: Double) {
