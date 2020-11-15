@@ -15,4 +15,6 @@
     <color name="yellow">#FDE456</color>
     <color name="red">#CF2929</color>
     <color name="dark_red">#801818</color>
+    <color name="dark_text">#97221A1A</color>
+    <color name="bright_text">#E4FFFFFF</color>
 </resources>

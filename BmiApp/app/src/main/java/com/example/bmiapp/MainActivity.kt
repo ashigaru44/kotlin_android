@@ -135,8 +135,7 @@ class MainActivity : AppCompatActivity() {
         if (emptyFlag) {
             binding.bmiTV.text = bmiTV
             addData(bmiTV.toDouble(), massET.toDouble(), heightET.toDouble())
-        } else
-            binding.bmiTV.text = "Fill required fields"
+        }
     }
 
     fun openBMI(view: View) {

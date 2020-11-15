@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.50" />
 
@@ -19,6 +20,9 @@
         android:layout_marginStart="@dimen/margin"
         android:layout_marginBottom="@dimen/margin_distance"
         android:text="@string/mass_kg"
+        android:textSize="18sp"
+        android:textColor="@color/dark_text"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/massET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/heightET"
@@ -52,7 +57,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/massET" />
+        app:layout_constraintTop_toBottomOf="@+id/massET"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/heightTV"
@@ -61,6 +67,9 @@
         android:layout_marginStart="@dimen/margin"
         android:layout_marginBottom="@dimen/margin_distance"
         android:text="@string/height_cm"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_text"
         app:layout_constraintBottom_toTopOf="@+id/heightET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -71,24 +80,35 @@
     <Button
         android:id="@+id/countBTN"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="@dimen/margin"
         android:layout_marginEnd="@dimen/margin"
+        android:backgroundTint="#51FFFFFF"
         android:onClick="calcBMI"
         android:text="@string/count_bmi"
+        android:textColor="@color/dark_text"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/bmiTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_value"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_view"
+        android:clickable="true"
+
         android:onClick="openBMI"
+        android:text="@string/empty_value"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/dark_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/countBTN" />
+        app:layout_constraintTop_toBottomOf="@+id/countBTN"
+        android:focusable="true" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

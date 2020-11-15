@@ -9,7 +9,7 @@
     <string name="mass_kg">Mass (kg/lb)</string>
     <string name="height_cm">Height (cm/in)</string>
     <string name="count_bmi">Count BMI</string>
-    <string name="empty_value">Enter values</string>
+    <string name="empty_value">BMI</string>
 
     <string name="history">History of measurements</string>
     <string name="units">Set units</string>
@@ -31,5 +31,6 @@
     <string name="mass_word">Mass</string>
     <string name="bmi_label">BMI</string>
     <string name="background_popup">background</string>
+    <string name="background_img_app">background main</string>
 
 </resources>
