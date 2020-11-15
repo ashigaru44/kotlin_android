@@ -1,7 +1,6 @@
 package com.example.bmiapp
 
 import android.content.Intent
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,12 +11,11 @@ import android.view.View
 import com.example.bmiapp.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.lang.NumberFormatException
+import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.pow
-import kotlin.math.round
 
 
 class MainActivity : AppCompatActivity() {
@@ -121,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             items = gson.fromJson(json, type)
     }
 
-    fun countBMI(view: View) {
+    fun calcBMI(view: View) {
         val massET = binding.massET.text.toString()
         val heightET = binding.heightET.text.toString()
         var emptyFlag = true
@@ -133,21 +131,10 @@ class MainActivity : AppCompatActivity() {
             binding.heightET.error = getString(R.string.height_empty)
             emptyFlag = false
         }
-        var mass = 0.0
-        var height = 0.0
-        try {
-            mass = massET.toDouble()
-            height = heightET.toDouble()
-        } catch (e: NumberFormatException) {
-            println(e)
-        }
-        if (units == "METRIC") {
-            height /= 100
-            bmiTV = (round(mass / height.pow(2) * 100) / 100).toString()
-        }
-        if (units == "IMPERIAL") {
-            bmiTV = (round(mass / height.pow(2) * 70300) / 100).toString()
-        }
+
+        val bmiCal = BmiCalculate()
+        bmiTV = bmiCal.calculateBMI(units, massET, heightET).toString()
+
         when {
             bmiTV.toDouble() < 16.0 -> binding.bmiTV.setTextColor(resources.getColor(R.color.dark_blue))
             bmiTV.toDouble() in 16.0..16.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.pale_blue))
@@ -160,7 +147,9 @@ class MainActivity : AppCompatActivity() {
         }
         if (emptyFlag){
             binding.bmiTV.text = bmiTV
-            addData(bmiTV.toDouble(), mass, height)
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.UNNECESSARY
+            addData(bmiTV.toDouble(), massET.toDouble(), heightET.toDouble())
         }
         else
             binding.bmiTV.text = "Fill required fields"
