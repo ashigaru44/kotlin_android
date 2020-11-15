@@ -12,20 +12,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.50" />
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scrollbars="vertical"/>-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/details_fragment"-->
-<!--        class="com.example.bmiapp.HistoryFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:layout_editor_absoluteX="0dp" />-->
-
     <TextView
         android:id="@+id/massTV"
         android:layout_width="wrap_content"
@@ -50,7 +36,7 @@
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/heightET"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin"
         android:layout_marginEnd="@dimen/margin"
-        android:onClick="countBMI"
+        android:onClick="calcBMI"
         android:text="@string/count_bmi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +86,7 @@
         android:layout_height="wrap_content"
         android:text="@string/empty_value"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:onClick="openBMI"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
