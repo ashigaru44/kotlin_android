@@ -1,12 +1,8 @@
 package com.example.bmiapp
 
 import android.app.Activity
-import android.content.ClipData
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -20,8 +16,7 @@ class HistoryFragment : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_history)
         loadData()
-//        val example_list = generateDummyList(100)
-        val recyclerView : RecyclerView = findViewById(R.id.recycler_view)
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.adapter = RecyclerViewAdapter(items)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -40,16 +35,4 @@ class HistoryFragment : Activity() {
         else
             items = gson.fromJson(json, type)
     }
-//    private fun generateDummyList(size: Int): List<ItemData> {
-//        val list = ArrayList<ItemData>()
-//        for (i in 0 until size) {
-//            val item = ItemData()
-//        }
-//        return list
-//    }
-//    companion object {
-//        @JvmStatic fun newInstance() : HistoryFragment {
-//            return HistoryFragment()
-//        }
-//    }
 }

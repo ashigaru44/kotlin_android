@@ -2,6 +2,9 @@
     <string name="app_name">BmiApp</string>
     <string name="mass_empty">Mass is empty!</string>
     <string name="height_empty">Height is empty!</string>
+    <string name="mass_val_err">Enter correct mass value! (20 – 1000)</string>
+    <string name="height_val_err">Enter correct height value! (20 – 1000)</string>
+
 
     <string name="mass_kg">Mass (kg/lb)</string>
     <string name="height_cm">Height (cm/in)</string>

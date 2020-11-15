@@ -17,7 +17,7 @@ class BmiDescription : Activity() {
         display?.getRealMetrics(dm)
         val width = dm.widthPixels
         val height = dm.heightPixels
-        window.setLayout((width*0.8).toInt(), (height*0.5).toInt())
+        window.setLayout((width * 0.8).toInt(), (height * 0.5).toInt())
         val bmiValue = intent.getStringExtra("bmi_value").toString()
         val bmiPopUp = findViewById<TextView>(R.id.bmiPopUp)
         bmiPopUp.text = bmiValue

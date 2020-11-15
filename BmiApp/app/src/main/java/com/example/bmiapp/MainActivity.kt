@@ -11,8 +11,6 @@ import android.view.View
 import com.example.bmiapp.databinding.ActivityMainBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,11 +28,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.root)
         bmiTV = binding.bmiTV.text.toString()
-//        metric_item = R.id.metric_units.toString()
-//        print("METRIC ITEM ===== ")
-//        print(metric_item)
-//        print(metric_units)
-        Log.d("TAGONCREATE", units)
         loadData()
     }
 
@@ -59,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         if (units.isEmpty()) {
-            Log.d("TAGGGG", "GETS TO IF")
             units = "METRIC"
         }
         Log.d("TAGGGG", units)
@@ -80,17 +72,12 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.metric_units -> {
                 item.isChecked = !item.isChecked
-//                item.isChecked = false
                 units = "METRIC"
-                Log.d("TAGGGG", units.toString())
                 true
             }
             R.id.imperial_units -> {
                 item.isChecked = !item.isChecked
                 units = "IMPERIAL"
-//                item.isChecked = true
-//                metric_units = false.toString()
-//                Log.d("TAGGGG", metric_units)
                 true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -145,13 +132,10 @@ class MainActivity : AppCompatActivity() {
             bmiTV.toDouble() in 35.0..39.99 -> binding.bmiTV.setTextColor(resources.getColor(R.color.red))
             bmiTV.toDouble() > 40.0 -> binding.bmiTV.setTextColor(resources.getColor(R.color.dark_red))
         }
-        if (emptyFlag){
+        if (emptyFlag) {
             binding.bmiTV.text = bmiTV
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.UNNECESSARY
             addData(bmiTV.toDouble(), massET.toDouble(), heightET.toDouble())
-        }
-        else
+        } else
             binding.bmiTV.text = "Fill required fields"
     }
 
@@ -168,12 +152,11 @@ class MainActivity : AppCompatActivity() {
         if (units == "METRIC") {
             massUnits = "kg"
             heightUnits = "cm"
-        }
-        else if (units == "IMPERIAL"){
+        } else if (units == "IMPERIAL") {
             massUnits = "lb"
             heightUnits = "ft"
         }
-        val item: ItemData = ItemData(bmi, currentTime, mass, height, massUnits, heightUnits)
+        val item = ItemData(bmi, currentTime, mass, height, massUnits, heightUnits)
 
         while (items.size >= 10)
             items.removeFirst()
