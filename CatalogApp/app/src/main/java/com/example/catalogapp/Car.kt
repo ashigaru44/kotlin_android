@@ -1,6 +1,9 @@
 package com.example.catalogapp
 
+import java.io.Serializable
+
 data class Car(
+    val imgURLs: List<Int>,
     val manufacture: String,
     val model: String,
     val type: String,
@@ -10,4 +13,4 @@ data class Car(
     val engineCapacities: List<Int>,
     val maxSpeed: Double,
     val timeTo100: Double
-)
+) : Serializable
