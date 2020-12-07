@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">CatalogApp</string>
+    <string name="manufacture">Manufacture</string>
+    <string name="type">Type</string>
+    <string name="model">Model</string>
+    <string name="generation">Generation</string>
+    <string name="produced_from">Produced from</string>
+    <string name="produced_to">Produced to</string>
+    <string name="engine_capacity">Engine Capacity</string>
+    <string name="maximum_speed">Maximum Speed</string>
+    <string name="time_to_100_km_h">Time to 100 km/h</string>
+    <string name="generationtext">GenerationTEXT</string>
+    <string name="year_from">Year from</string>
+    <string name="year_to">Year to</string>
+    <string name="engsizetext">engSizeTEXT</string>
+    <string name="maxspeedtext">maxSpeedTEXT</string>
+    <string name="timeto100text">timeTo100TEXT</string>
+</resources>
