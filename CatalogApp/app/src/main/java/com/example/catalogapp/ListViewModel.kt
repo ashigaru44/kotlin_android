@@ -11,12 +11,10 @@ class ListViewModel : ViewModel() {
     var carList: MutableLiveData<List<Car>>? = null
 
     internal fun getCarList(): MutableLiveData<List<Car>> {
-        Log.d("dataVAL", carList.toString())
         if (carList == null) {
             carList = MutableLiveData()
             loadData()
         }
-        Log.d("dataVAL", carList.toString())
 
         return carList as MutableLiveData<List<Car>>
     }
@@ -27,7 +25,14 @@ class ListViewModel : ViewModel() {
             val carList = ArrayList<Car>()
             carList.add(
                 Car(
-                    imgURLs = listOf(R.drawable.mercedes_klasa_g),
+                    imgURLs = listOf(
+                        CarImgItem(R.drawable.mercedes_klasa_g),
+                        CarImgItem(R.drawable.mercedes_klasa_g),
+                        CarImgItem(R.drawable.mercedes_klasa_g),
+                        CarImgItem(R.drawable.mercedes_klasa_g),
+                        CarImgItem(R.drawable.mercedes_klasa_g),
+                        CarImgItem(R.drawable.mercedes_klasa_g)
+                    ),
                     manufacture = "Mercedes-Benz", model = "G Class",
                     type = "SUV", generation = "W464", productionYearFrom = 2018,
                     productionYearTo = -1, engineCapacities = listOf(4000, 5000),
@@ -36,7 +41,20 @@ class ListViewModel : ViewModel() {
             )
             carList.add(
                 Car(
-                    imgURLs = listOf(R.drawable.aston_martin),
+                    imgURLs = listOf(
+                        CarImgItem(R.drawable.aston1),
+                        CarImgItem(R.drawable.aston2),
+                        CarImgItem(R.drawable.aston3),
+                        CarImgItem(R.drawable.aston4),
+                        CarImgItem(R.drawable.aston5),
+                        CarImgItem(R.drawable.aston6),
+                        CarImgItem(R.drawable.aston7),
+                        CarImgItem(R.drawable.aston8),
+                        CarImgItem(R.drawable.aston9),
+                        CarImgItem(R.drawable.aston10),
+                        CarImgItem(R.drawable.aston11),
+                        CarImgItem(R.drawable.aston12),
+                    ),
                     manufacture = "Aston Martin", model = "DB11",
                     type = "Coupe", generation = "", productionYearFrom = 2016,
                     productionYearTo = -1, engineCapacities = listOf(4000, 5200),

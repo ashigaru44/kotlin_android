@@ -32,7 +32,7 @@ class ViewH(
     }
 
     fun bind(car: Car) {
-        imgView?.setImageResource(car.imgURLs[0])
+        imgView?.setImageResource(car.imgURLs[0].getImage())
         manufactureView?.text = car.manufacture
         modelView?.text = car.model
         typeView?.text = car.type

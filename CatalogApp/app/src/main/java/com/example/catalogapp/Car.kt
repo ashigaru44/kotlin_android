@@ -3,7 +3,7 @@ package com.example.catalogapp
 import java.io.Serializable
 
 data class Car(
-    val imgURLs: List<Int>,
+    val imgURLs: List<CarImgItem>,
     val manufacture: String,
     val model: String,
     val type: String,
