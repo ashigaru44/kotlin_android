@@ -20,7 +20,7 @@ class ViewH(
     private var manufactureView: TextView? = null
     private var modelView: TextView? = null
     private var typeView: TextView? = null
-    private lateinit var onItemClickListener: ListElementAdapter.OnItemClickListener
+    private var onItemClickListener: ListElementAdapter.OnItemClickListener
 
     init {
         imgView = itemView.findViewById(R.id.mainIMG)

@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity(), ListElementAdapter.OnItemClickListener
     }
 
     override fun onItemClick(position: Int) {
-        Log.d("CLICK", "ITEM_CLICKED")
         val intent = Intent(this, ItemDataActivity::class.java)
         intent.putExtra("carItem", data.value?.get(position))
         startActivity(intent)
