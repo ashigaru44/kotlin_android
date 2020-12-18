@@ -3,6 +3,8 @@ package com.example.catalogapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
@@ -13,7 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), ListElementAdapter.OnItemClickListener {
-    var data = MutableLiveData<List<Car>>()
+    private var data = MutableLiveData<List<Car>>()
+    private lateinit var carsType : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +56,26 @@ class MainActivity : AppCompatActivity(), ListElementAdapter.OnItemClickListener
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.filter_options_menu, menu)
+        return true
+    }
+
+//    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+//        if (carsType.isEmpty()) {
+//            carsType = "ALL"
+//        }
+//        Log.d("TAGGGG", carsType)
+//
+//        if (carsType == "METRIC") {
+//            menu.findItem(R.id.metric_carsType).isChecked = true
+//        } else if (carsType == "IMPERIAL") {
+//            menu.findItem(R.id.imperial_carsType).isChecked = true
+//        }
+//        return super.onPrepareOptionsMenu(menu)
+//    }
 
     override fun onItemClick(position: Int) {
         val intent = Intent(this, ItemDataActivity::class.java)

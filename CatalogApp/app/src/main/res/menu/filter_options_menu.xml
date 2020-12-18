@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/all_types"
+            android:title="All types" />
+        <item
+            android:id="@+id/suvs_filter"
+            android:title="SUV">
+        </item>
+        <item
+            android:id="@+id/sedan_filter"
+            android:title="Sedan">
+        </item>
+        <item
+            android:id="@+id/coupe_filter"
+            android:title="Coupe">
+        </item>
+        <item
+            android:id="@+id/cabrio_filter"
+            android:title="Cabrio">
+        </item>
+    </group>
+
+</menu>
