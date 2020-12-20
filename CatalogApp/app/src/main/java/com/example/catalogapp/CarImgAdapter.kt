@@ -1,20 +1,18 @@
 package com.example.catalogapp
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.contentValuesOf
 import androidx.recyclerview.widget.RecyclerView
 import com.makeramen.roundedimageview.RoundedImageView
 
 class CarImgAdapter(
-    private var carImgItems: List<CarImgItem>,
+    private var carImgItems: List<Int>,
     private var onItemClickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<CarImgAdapter.CarViewHolder>() {
 
-    lateinit var listener: CarImgAdapter.OnItemClickListener
+    lateinit var listener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
         return CarViewHolder(
@@ -29,12 +27,6 @@ class CarImgAdapter(
 
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         holder.setCarImage(carImgItems[position])
-
-//        holder.carImgView.setOnClickListener(View.OnClickListener {
-//            fun onClick(view: View){
-//                intent = Intent(context, )
-//            }
-//        })
     }
 
     override fun getItemCount(): Int = carImgItems.size
@@ -47,8 +39,8 @@ class CarImgAdapter(
             itemView.setOnClickListener(this)
         }
 
-        fun setCarImage(carImgItem: CarImgItem) {
-            carImgView.setImageResource(carImgItem.getImage())
+        fun setCarImage(carImgItem: Int) {
+            carImgView.setImageResource(carImgItem)
         }
 
         override fun onClick(v: View?) {
@@ -57,7 +49,7 @@ class CarImgAdapter(
 
     }
 
-    fun getItemAt(position: Int): CarImgItem {
+    fun getItemAt(position: Int): Int {
         return carImgItems[position]
     }
 

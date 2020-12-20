@@ -20,11 +20,11 @@ class ImageActivity : Activity() {
         display?.getRealMetrics(dm)
         var screenWidth = dm.widthPixels
         val relLayout : RelativeLayout = findViewById(R.id.rel_layout)
-        val imgItem = intent.getSerializableExtra("carImg") as CarImgItem
+        val imgItem = intent.getSerializableExtra("carImg") as Int
         val dims = BitmapFactory.Options()
         dims.inJustDecodeBounds = true
-        relLayout.setBackgroundResource(imgItem.getImage())
-        val imgBitmap = BitmapFactory.decodeResource(resources, imgItem.getImage(), dims)
+        relLayout.setBackgroundResource(imgItem)
+        BitmapFactory.decodeResource(resources, imgItem, dims)
         var imgHeight = dims.outHeight
         val imgWidth = dims.outWidth
         if (imgWidth > screenWidth) {

@@ -1,9 +1,14 @@
 package com.example.catalogapp
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "car_table")
 data class Car(
-    val imgURLs: List<CarImgItem>,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val imgURLs: List<Int>,
     val manufacture: String,
     val model: String,
     val type: String,

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class ItemDataActivity : AppCompatActivity(), CarImgAdapter.OnItemClickListener{
-    lateinit var carImgsItems : List<CarImgItem>
+    lateinit var carImgsItems : List<Int>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_data_activity)

@@ -2,36 +2,35 @@ package com.example.catalogapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), ListElementAdapter.OnItemClickListener {
-    private var data = MutableLiveData<List<Car>>()
-    private lateinit var carsType : String
+    private lateinit var carsType: String
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ListElementAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.recycler_view)
         recyclerView.setHasFixedSize(true)
+        adapter = ListElementAdapter(this)
 
-
-        val model = ViewModelProviders.of(this).get(ListViewModel::class.java)
-        model.getCarList().observe(this, { carList ->
-            data.value = carList
-//            Toast.makeText(this, "on", Toast.LENGTH_SHORT).show()
+        val model = ViewModelProvider(
+            this,
+            ListViewModelFactory(this.application)
+        ).get(ListViewModel::class.java)
+        model.getCarList().observe(this, { carsData ->
+            adapter.setCarsData(carsData)
         })
-        val adapter = ListElementAdapter(data, this)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -79,7 +78,7 @@ class MainActivity : AppCompatActivity(), ListElementAdapter.OnItemClickListener
 
     override fun onItemClick(position: Int) {
         val intent = Intent(this, ItemDataActivity::class.java)
-        intent.putExtra("carItem", data.value?.get(position))
+        intent.putExtra("carItem", adapter.getItemAt(position))
         startActivity(intent)
     }
 }

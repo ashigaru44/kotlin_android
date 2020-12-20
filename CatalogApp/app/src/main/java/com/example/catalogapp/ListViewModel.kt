@@ -1,68 +1,35 @@
 package com.example.catalogapp
 
-import android.os.Handler
-import android.os.Looper
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
 
-class ListViewModel : ViewModel() {
-    var carList: MutableLiveData<List<Car>>? = null
+class ListViewModel(application: Application) : ViewModel() {
+    val repository: CarRepository = CarRepository(application)
+    lateinit var carList: LiveData<List<Car>>
 
-    internal fun getCarList(): MutableLiveData<List<Car>> {
-        if (carList == null) {
-            carList = MutableLiveData()
-            loadData()
-        }
+    internal fun getCarList(): LiveData<List<Car>> {
+        loadData()
+        return carList
+    }
 
-        return carList as MutableLiveData<List<Car>>
+    fun insert(car: Car){
+        repository.insert(car)
+    }
+
+    fun delete(car: Car){
+        repository.delete(car)
+    }
+
+    fun deleteAll(car: Car){
+        repository.deleteAllCars()
     }
 
     private fun loadData() {
-        val handler = Handler(Looper.getMainLooper())
-        handler.post {
-            val carList = ArrayList<Car>()
-            carList.add(
-                Car(
-                    imgURLs = listOf(
-                        CarImgItem(R.drawable.mercedes_klasa_g),
-                        CarImgItem(R.drawable.mercedes_klasa_g),
-                        CarImgItem(R.drawable.mercedes_klasa_g),
-                        CarImgItem(R.drawable.mercedes_klasa_g),
-                        CarImgItem(R.drawable.mercedes_klasa_g),
-                        CarImgItem(R.drawable.mercedes_klasa_g)
-                    ),
-                    manufacture = "Mercedes-Benz", model = "G Class",
-                    type = "SUV", generation = "W464", productionYearFrom = 2018,
-                    productionYearTo = -1, engineCapacities = listOf(4000, 5000),
-                    maxSpeed = 210.0, timeTo100 = 5.9
-                )
-            )
-            carList.add(
-                Car(
-                    imgURLs = listOf(
-                        CarImgItem(R.drawable.aston1),
-                        CarImgItem(R.drawable.aston2),
-                        CarImgItem(R.drawable.aston3),
-                        CarImgItem(R.drawable.aston4),
-                        CarImgItem(R.drawable.aston5),
-                        CarImgItem(R.drawable.aston6),
-                        CarImgItem(R.drawable.aston7),
-                        CarImgItem(R.drawable.aston8),
-                        CarImgItem(R.drawable.aston9),
-                        CarImgItem(R.drawable.aston10),
-                        CarImgItem(R.drawable.aston11),
-                        CarImgItem(R.drawable.aston12),
-                    ),
-                    manufacture = "Aston Martin", model = "DB11",
-                    type = "Coupe", generation = "", productionYearFrom = 2016,
-                    productionYearTo = -1, engineCapacities = listOf(4000, 5200),
-                    maxSpeed = 322.0, timeTo100 = 3.8
-                )
-            )
-            this.carList!!.setValue(carList)
-        }
+        carList = repository.getAllCars()
+        Log.d("dataCAR_LIST", carList.value.toString())
     }
 
 }
