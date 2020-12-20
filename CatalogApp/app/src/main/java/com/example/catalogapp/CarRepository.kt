@@ -73,6 +73,12 @@ class CarRepository (application: Application) : CoroutineScope {
     }
 
     fun getAllCars(): LiveData<List<Car>> {
+        allCars = carDao.getAllCars()
+        return allCars
+    }
+
+    fun getCarsWithType(type: String): LiveData<List<Car>> {
+        allCars = carDao.getCarsWithType(type)
         return allCars
     }
 

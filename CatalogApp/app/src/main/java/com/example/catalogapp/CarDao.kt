@@ -19,4 +19,7 @@ interface CarDao {
 
     @Query("SELECT * FROM car_table")
     fun getAllCars(): LiveData<List<Car>>
+
+    @Query("SELECT * FROM car_table WHERE type LIKE :type")
+    fun getCarsWithType(type: String): LiveData<List<Car>>
 }

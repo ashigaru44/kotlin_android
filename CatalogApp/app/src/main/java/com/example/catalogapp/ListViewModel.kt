@@ -1,7 +1,6 @@
 package com.example.catalogapp
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
@@ -11,25 +10,26 @@ class ListViewModel(application: Application) : ViewModel() {
     lateinit var carList: LiveData<List<Car>>
 
     internal fun getCarList(): LiveData<List<Car>> {
-        loadData()
+        carList = repository.getAllCars()
         return carList
     }
 
-    fun insert(car: Car){
+    internal fun getCarsWithType(type: String): LiveData<List<Car>> {
+        carList = repository.getCarsWithType(type)
+        return carList
+    }
+
+    fun insert(car: Car) {
         repository.insert(car)
     }
 
-    fun delete(car: Car){
+    fun delete(car: Car) {
         repository.delete(car)
     }
 
-    fun deleteAll(car: Car){
+    fun deleteAll(car: Car) {
         repository.deleteAllCars()
     }
 
-    private fun loadData() {
-        carList = repository.getAllCars()
-        Log.d("dataCAR_LIST", carList.value.toString())
-    }
 
 }

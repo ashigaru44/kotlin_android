@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @Entity(tableName = "car_table")
 data class Car(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val imgURLs: List<Int>,
     val manufacture: String,
