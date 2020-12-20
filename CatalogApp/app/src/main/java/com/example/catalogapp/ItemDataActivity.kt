@@ -1,5 +1,6 @@
 package com.example.catalogapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -7,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
-class ItemDataActivity : AppCompatActivity() {
+class ItemDataActivity : AppCompatActivity(), CarImgAdapter.OnItemClickListener{
+    lateinit var carImgsItems : List<Int>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.item_data_activity)
@@ -16,7 +18,6 @@ class ItemDataActivity : AppCompatActivity() {
         carImgsRecyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        Log.d("CLICK", "Activity_entered")
         val carItem = intent.getSerializableExtra("carItem") as Car
         Log.d("CLICK", carItem.toString())
 
@@ -28,9 +29,9 @@ class ItemDataActivity : AppCompatActivity() {
         val engCapTV: TextView = findViewById(R.id.engCapTV)
         val maxSpeedTV: TextView = findViewById(R.id.maxSpeedTV)
         val timeTo100TV: TextView = findViewById(R.id.timeTo100TV)
-        val carImgsItems = carItem.imgURLs
+        carImgsItems = carItem.imgURLs
 
-        carImgsRecyclerView.adapter = CarImgAdapter(carImgsItems)
+        carImgsRecyclerView.adapter = CarImgAdapter(carImgsItems, this)
 
         manufactureTV.text = carItem.manufacture
         modelTV.text = carItem.model
@@ -43,6 +44,12 @@ class ItemDataActivity : AppCompatActivity() {
         engCapTV.text = carItem.engineCapacities.joinToString()
         maxSpeedTV.text = carItem.maxSpeed.toString()
         timeTo100TV.text = carItem.timeTo100.toString()
+    }
 
+    override fun onItemClick(position: Int) {
+        val intent = Intent(this, ImageActivity::class.java)
+        Log.d("CLICK2", carImgsItems[position].toString())
+        intent.putExtra("carImg", carImgsItems[position])
+        startActivity(intent)
     }
 }

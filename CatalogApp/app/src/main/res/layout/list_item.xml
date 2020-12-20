@@ -16,27 +16,27 @@
             android:id="@+id/modelTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/manufactureTV"
-            android:layout_marginStart="143dp"
-            android:layout_marginTop="-48dp"
+            android:layout_alignBottom="@+id/mainIMG"
+            android:layout_marginStart="151dp"
+            android:layout_marginTop="-43dp"
+            android:layout_marginBottom="35dp"
             android:layout_toEndOf="@+id/mainIMG"
             android:text="@string/model" />
 
         <ImageView
             android:id="@+id/mainIMG"
             android:layout_width="96dp"
-            android:layout_height="65dp" />
+            android:layout_height="72dp" />
 
         <TextView
             android:id="@+id/manufactureTV"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="9dp"
-
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="151dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="148dp"
             android:layout_toEndOf="@+id/mainIMG"
             android:ellipsize="end"
             android:maxLines="2"
@@ -48,10 +48,11 @@
             android:id="@+id/typeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/manufactureTV"
+            android:layout_alignBottom="@+id/mainIMG"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="-63dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginTop="-27dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="54dp"
             android:text="@string/type" />
 
     </RelativeLayout>

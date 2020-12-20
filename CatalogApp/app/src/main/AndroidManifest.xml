@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ItemDataActivity" />
+        <activity android:name=".ImageActivity"
+            android:theme="@style/Theme.CatalogApp.CustomTheme"/>
+
     </application>
 
 </manifest>
