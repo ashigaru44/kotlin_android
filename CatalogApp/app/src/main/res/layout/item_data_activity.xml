@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ItemDataActivity">
+    tools:context=".ItemDataActivity"
+    android:background="@drawable/cutted_details_background_garage">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,6 +23,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#D1D1D1"
                 android:id="@+id/item_manufactureTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -30,6 +34,8 @@
                 android:text="@string/manufacture" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="#9E9E9E"
                 android:id="@+id/item_modelTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,55 +46,62 @@
 
         <RelativeLayout
             android:id="@+id/relLT"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/man_model_LT">
-
             <LinearLayout
                 android:id="@+id/labelsLT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="right">
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#BCBCBC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/generation" />
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#BCBCBC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/produced_from" />
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#BCBCBC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/produced_to" />
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#BCBCBC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/engine_capacity" />
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#BCBCBC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/maximum_speed" />
 
                 <TextView
+                    android:textStyle="bold"
+                    android:textColor="#BCBCBC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:gravity="center"
                     android:text="@string/time_to_100_km_h" />
             </LinearLayout>
@@ -101,6 +114,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="#BCBCBC"
                     android:id="@+id/generationTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,6 +123,7 @@
                     android:text="@string/generationtext" />
 
                 <TextView
+                    android:textColor="#BCBCBC"
                     android:id="@+id/yearFromTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,6 +132,7 @@
                     android:text="@string/year_from" />
 
                 <TextView
+                    android:textColor="#BCBCBC"
                     android:id="@+id/yearToTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,6 +141,7 @@
                     android:text="@string/year_to" />
 
                 <TextView
+                    android:textColor="#BCBCBC"
                     android:id="@+id/engCapTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,6 +150,7 @@
                     android:text="@string/engsizetext" />
 
                 <TextView
+                    android:textColor="#BCBCBC"
                     android:id="@+id/maxSpeedTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,6 +159,7 @@
                     android:text="@string/maxspeedtext" />
 
                 <TextView
+                    android:textColor="#BCBCBC"
                     android:id="@+id/timeTo100TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
