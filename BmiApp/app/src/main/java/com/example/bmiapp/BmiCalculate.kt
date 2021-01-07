@@ -1,7 +1,5 @@
 package com.example.bmiapp
 
-import android.util.Log
-import java.lang.NumberFormatException
 import kotlin.math.pow
 import kotlin.math.round
 

@@ -1,33 +1,39 @@
 package com.example.bmiapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.bmiapp.databinding.ActivityMainBinding
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bmiTV: String
+
+    //    private lateinit var repository : BmiRepository
+    private lateinit var model: BmiViewModel
     private var units: String = ""
-    private var items = ArrayList<ItemData>()
     private var sharedPrefs = "sharedPrefs"
+    private var bmiRecords: MutableList<BmiItem> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater);
         setContentView(binding.root)
+//        repository = BmiRepository(this.application)
         bmiTV = binding.bmiTV.text.toString()
+        model = ViewModelProvider(
+            this,
+            BmiViewModelFactory(this.application)
+        ).get(BmiViewModel::class.java)
         loadData()
     }
 
@@ -54,8 +60,6 @@ class MainActivity : AppCompatActivity() {
         if (units.isEmpty()) {
             units = "METRIC"
         }
-        Log.d("TAGGGG", units)
-
         if (units == "METRIC") {
             menu.findItem(R.id.metric_units).isChecked = true
         } else if (units == "IMPERIAL") {
@@ -67,6 +71,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.history -> {
+                saveData()
                 startActivity(Intent(this, HistoryFragment::class.java))
                 true
             }
@@ -84,26 +89,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun saveData() {
+    private fun saveData() {
+        loadData()
         val sharedPrefs = getSharedPreferences(sharedPrefs, MODE_PRIVATE)
         val editor = sharedPrefs.edit()
         val gson = Gson()
-        val json = gson.toJson(items)
+        val json = gson.toJson(bmiRecords)
         editor.putString("bmi_results", json)
         editor.apply()
     }
 
-    fun loadData() {
-        val sharedPrefs = getSharedPreferences(sharedPrefs, MODE_PRIVATE)
-        val gson = Gson()
-        val json = sharedPrefs.getString("bmi_results", "")
-        val type = object : TypeToken<ArrayList<ItemData>>() {
-        }.type
-
-        if (json == null || json == "")
-            items = ArrayList()
-        else
-            items = gson.fromJson(json, type)
+    private fun loadData() {
+        try {
+            bmiRecords = (model.getBmiRecords()).value!!
+        } catch (e: NullPointerException) {
+        }
     }
 
     fun calcBMI(view: View) {
@@ -155,12 +155,8 @@ class MainActivity : AppCompatActivity() {
             massUnits = "lb"
             heightUnits = "ft"
         }
-        val item = ItemData(bmi, currentTime, mass, height, massUnits, heightUnits)
-
-        while (items.size >= 10)
-            items.removeFirst()
-        items.add(item)
-        saveData()
+        val bmiItem = BmiItem(bmi, currentTime, mass, height, massUnits, heightUnits)
+        bmiRecords.add(bmiItem)
+        model.insert(bmiItem)
     }
-
 }

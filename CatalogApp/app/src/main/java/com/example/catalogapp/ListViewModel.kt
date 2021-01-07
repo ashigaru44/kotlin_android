@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 
 class ListViewModel(application: Application) : ViewModel() {
-    val repository: CarRepository = CarRepository(application)
+    private val repository: CarRepository = CarRepository(application)
     lateinit var carList: LiveData<List<Car>>
 
     internal fun getCarList(): LiveData<List<Car>> {
@@ -30,6 +30,4 @@ class ListViewModel(application: Application) : ViewModel() {
     fun deleteAll(car: Car) {
         repository.deleteAllCars()
     }
-
-
 }
